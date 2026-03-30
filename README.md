@@ -2,9 +2,6 @@
 
 **Reflex Games** is a high-performance interactive Single Page Application (SPA) designed for cognitive training and e-sports skill development. It centralizes a suite of mini-games to evaluate and improve key human metrics.
 
-## 🤖 AI & Methodology
-This project was developed using an **AI-augmented workflow** (Claude Code/Gemini). I used these tools to brainstorm architectural patterns, debug complex CSS-in-JS physics, and accelerate the documentation process while maintaining full control over the final implementation.
-
 ## 🛠️ Tech Stack
 * **Core:** React v19 + Vite.
 * **Styling:** Tailwind CSS v4.
