@@ -1,16 +1,36 @@
-# React + Vite
+# App-Reflex-Game 🎯
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Reflex Games** is a high-performance interactive Single Page Application (SPA) designed for cognitive training and e-sports skill development. It centralizes a suite of mini-games to evaluate and improve key human metrics.
 
-Currently, two official plugins are available:
+## 🤖 AI & Methodology
+This project was developed using an **AI-augmented workflow** (Claude Code/Gemini). I used these tools to brainstorm architectural patterns, debug complex CSS-in-JS physics, and accelerate the documentation process while maintaining full control over the final implementation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+* **Core:** React v19 + Vite.
+* **Styling:** Tailwind CSS v4.
+* **Animations:** Framer Motion v12.
+* **Icons & Analytics:** Lucide-react & Recharts.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙️ Technical Deep Dive & Problem Solving
 
-## Expanding the ESLint configuration
+### 1. DOM Physics & Geometric Clamping
+In the **Tracking Aim** game, I implemented a "cage" solution to handle boundary physics. 
+* **The Challenge:** Handling complex math interpolations for target clipping at high refresh rates.
+* **The Solution:** Delegated boundary logic to the **DOM Box Model** using an `absolute inset-[30px]` container, ensuring the target stays within the frame without heavy JS overhead.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. UI Rendering Decoupling
+Refactored the navigation (`BackButton`) to operate independently of the game's **Finite-State Machine**. This ensures the user always has an "Emergency Exit" (Nielsen’s Heuristics), regardless of the game’s internal state.
+
+### 3. State-Phase Integrity
+Implemented strict phase-filtering to prevent score exploits and ensure modularity through custom hooks like `useGameFeel` and `useStreak`.
+
+---
+
+## 🚀 Development Note
+Developed using an **AI-augmented workflow** (Claude Code/Gemini) to brainstorm architectural patterns and optimize DOM physics.
+
+## 💻 How to run
+1. `npm install`
+2. `npm run dev`
