@@ -30,7 +30,8 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
         setReactionTime(null);
 
         if (!beepSound.current) {
-            beepSound.current = new Audio('/sfx/bloop.mp3');
+            // ¡AQUÍ ESTÁ LA MAGIA DE VITE! Añadimos import.meta.env.BASE_URL
+            beepSound.current = new Audio(import.meta.env.BASE_URL + 'sfx/bloop.mp3');
         }
 
         // Apply AudioContext Unlocking Pattern
