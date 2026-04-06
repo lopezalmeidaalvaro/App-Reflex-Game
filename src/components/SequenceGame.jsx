@@ -37,7 +37,7 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
         if (isProcessing.current) return;
         triggerStart();
         
-        // Estado inicializado correctamente (sanitización de estado)
+        // State correctly initialized (state sanitization)
         const arr = Array.from({ length: 9 }, (_, i) => i + 1);
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -57,7 +57,7 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
     };
 
     const handleTap = (num) => {
-        // Validación de Eventos (Anti-Spam)
+        // Event Validation (Anti-Spam)
         if (gameState !== 'playing' || !num.active || isProcessing.current) return;
 
         isProcessing.current = true;
@@ -77,20 +77,20 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
                     setTotalTime(time);
                     setGameState('result');
                     
-                    // Manejo de Errores (Error Handling) en el guardado
+                    // Error handling on save
                     try {
                         if (typeof onSaveRecord === 'function') {
                             onSaveRecord(time);
                         }
                     } catch (error) {
-                        console.error('SequenceGame: Error silencioso al intentar guardar registro.', error);
+                        console.error('SequenceGame: Silent error when trying to save record.', error);
                     }
                 } else {
                     setExpectedValue(nextTarget);
                 }
                 
                 isProcessing.current = false;
-            }, 150); // Muestra el destello verde brevemente antes de desaparecer el botón
+            }, 150); // Shows the green flash briefly before the button disappears
         } else {
             triggerFail();
             setGameState('error');
@@ -124,15 +124,15 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
                         className="flex flex-col items-center justify-center p-8 bg-slate-800/80 rounded-[2rem] border border-slate-700 shadow-2xl z-40 mx-4"
                     >
                         <Grid3x3 size={48} className="text-fuchsia-400 mb-6 drop-shadow-[0_0_10px_rgba(232,121,249,0.8)]" />
-                        <h1 className="text-4xl font-black mb-4 tracking-tight text-white text-center">Memoria Rápida</h1>
+                        <h1 className="text-4xl font-black mb-4 tracking-tight text-white text-center">Sequence Memory</h1>
                         <p className="text-slate-400 text-base mb-8 text-center max-w-sm">
-                            Pulsa los números en estricto orden secuencial. Si te equivocas, la partida se reinicia.
+                            Press the numbers in strict sequential order. If you make a mistake, the game restarts.
                         </p>
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="bg-fuchsia-500 text-slate-900 px-10 py-4 rounded-xl font-black text-xl uppercase tracking-widest hover:bg-fuchsia-400 active:scale-95 shadow-[0_0_20px_rgba(232,121,249,0.4)] transition-all w-full"
                         >
-                            Comenzar
+                            Start
                         </button>
                     </motion.div>
                 )}
@@ -146,7 +146,7 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
                         className="flex flex-col items-center justify-center w-full px-4"
                     >
                         <div className="text-slate-500 font-bold tracking-[0.2em] mb-8 text-xl min-h-[4rem]">
-                            <>SIGUIENTE: <span className={`text-4xl block text-center mt-2 ${gameState === 'error' ? 'text-white' : 'text-fuchsia-400'} drop-shadow-[0_0_15px_currentColor]`}>{expectedValue}</span></>
+                            <>NEXT: <span className={`text-4xl block text-center mt-2 ${gameState === 'error' ? 'text-white' : 'text-fuchsia-400'} drop-shadow-[0_0_15px_currentColor]`}>{expectedValue}</span></>
                         </div>
 
                         <div className="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-[400px] aspect-square">
@@ -189,7 +189,7 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, scale: 1 }}
                         className="flex flex-col items-center justify-center p-10 bg-slate-800/80 rounded-[2rem] border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-40 max-w-sm w-full mx-4 text-center"
                     >
-                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Completado</h2>
+                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Completed</h2>
                         <div className="text-6xl md:text-7xl font-mono font-black text-fuchsia-400 mb-10 drop-shadow-[0_0_20px_rgba(232,121,249,0.3)]">
                             {Math.round(totalTime)}<span className="text-3xl font-sans text-slate-500 ml-2">ms</span>
                         </div>
@@ -198,7 +198,7 @@ export default function SequenceGame({ onBack, onSaveRecord }) {
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="w-full flex items-center justify-center gap-3 bg-fuchsia-500 text-slate-900 px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wide hover:bg-fuchsia-400 active:scale-95 transition-all shadow-[0_0_20px_rgba(232,121,249,0.4)]"
                         >
-                            <RotateCcw size={22} /> Jugar de nuevo
+                            <RotateCcw size={22} /> Play Again
                         </button>
                     </motion.div>
                 )}

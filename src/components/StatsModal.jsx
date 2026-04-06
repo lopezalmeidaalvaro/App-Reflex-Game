@@ -33,8 +33,8 @@ export default function StatsModal({ gameId, gameTitle, history, onClose }) {
                     <X size={20} />
                 </button>
 
-                <h3 className="text-2xl font-black mb-1 tracking-tight text-white">Progresión: {gameTitle}</h3>
-                <p className="text-sm text-slate-400 mb-8 tracking-wide font-medium">Últimos {history.length} intentos</p>
+                <h3 className="text-2xl font-black mb-1 tracking-tight text-white">Progression: {gameTitle}</h3>
+                <p className="text-sm text-slate-400 mb-8 tracking-wide font-medium">Last {history.length} attempts</p>
 
                 {history.length > 1 ? (
                     <div className="w-full h-64 md:h-80">
@@ -67,15 +67,15 @@ export default function StatsModal({ gameId, gameTitle, history, onClose }) {
                                     contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '1rem', fontWeight: 600 }}
                                     itemStyle={{ color: '#34d399' }}
                                     labelStyle={{ color: '#94a3b8', marginBottom: '0.25rem' }}
-                                    formatter={(value) => [`${value} ms`, 'Tiempo']}
+                                    formatter={(value) => [`${value} ms`, 'Time']}
                                 />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
                 ) : (
                     <div className="w-full h-64 flex flex-col items-center justify-center border-2 border-dashed border-slate-700/50 rounded-2xl">
-                        <span className="text-slate-500 font-bold mb-2">No hay suficientes datos.</span>
-                        <span className="text-slate-600 text-sm">Juega al menos 2 veces para ver la gráfica.</span>
+                        <span className="text-slate-500 font-bold mb-2">Not enough data.</span>
+                        <span className="text-slate-600 text-sm">Play at least 2 times to see the graph.</span>
                     </div>
                 )}
             </motion.div>

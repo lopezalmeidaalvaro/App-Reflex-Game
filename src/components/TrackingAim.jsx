@@ -27,7 +27,7 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
         // Generate an array of 5 waypoint coordinates for the target to fly through
         const points = [];
         for (let i = 0; i < 4; i++) {
-            // Genera un ratio puro de 0 a 1 matemático.
+            // Generates a pure 0 to 1 mathematical ratio.
             points.push({
                 x: Math.random(),
                 y: Math.random()
@@ -52,7 +52,7 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
     };
 
     const hitTarget = (e) => {
-        // Validación Anti-Exploit
+        // Anti-Exploit Validation
         if (gameState !== 'playing' || isProcessing.current) return;
         e.stopPropagation();
         e.preventDefault();
@@ -72,7 +72,7 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
                     onSaveRecord(totalTime);
                 }
             } catch (error) {
-                console.error("TrackingAim: Fallo al guardar récord.", error);
+                console.error("TrackingAim: Failed to save record.", error);
             }
         } else {
             setTargetsHit(hits);
@@ -81,8 +81,8 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
         isProcessing.current = false;
     };
 
-    // Usamos el % puro. Restringiremos el rango con un contenedor CSS físico (inset) 
-    // para evitar fallos de interpolación de calc() en framer-motion.
+    // We use pure %. We will restrict the range with a physical CSS container (inset) 
+    // to avoid calc() interpolation bugs in framer-motion.
     const xPath = targetPositions.map(p => `${p.x * 100}%`);
     const yPath = targetPositions.map(p => `${p.y * 100}%`);
 
@@ -111,13 +111,13 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
                         </div>
                         <h1 className="text-4xl font-black mb-4 tracking-tight text-white">Tracking</h1>
                         <p className="text-slate-400 text-base mb-8">
-                            Dificultad de puntería avanzada. Destruye {TARGET_TOTAL} objetivos en constante movimiento errático.
+                            Advanced aiming difficulty. Destroy {TARGET_TOTAL} targets in constant erratic motion.
                         </p>
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="bg-rose-500 text-slate-900 px-10 py-4 rounded-xl font-black text-xl uppercase tracking-widest hover:bg-rose-400 active:scale-95 shadow-[0_0_20px_rgba(244,63,94,0.4)] transition-all w-full"
                         >
-                            Cazar
+                            Hunt
                         </button>
                     </motion.div>
                 )}
@@ -137,7 +137,7 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, scale: 1 }}
                         className="flex flex-col items-center justify-center p-10 bg-slate-800/90 backdrop-blur-md rounded-[2rem] border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-40 max-w-sm w-full mx-4 text-center"
                     >
-                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Cacería Completa</h2>
+                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Hunt Complete</h2>
                         <div className="flex items-baseline justify-center mb-2">
                            <div className="text-6xl md:text-7xl font-mono font-black text-rose-400 drop-shadow-[0_0_20px_rgba(244,63,94,0.3)]">
                                 {Math.round(stats.totalTime)}
@@ -145,14 +145,14 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
                            <span className="text-3xl font-sans text-slate-500 ml-2">ms</span>
                         </div>
                         <div className="text-slate-400 font-bold mb-10 text-lg">
-                            {Math.round(stats.totalTime / TARGET_TOTAL)} ms / objetivo
+                            {Math.round(stats.totalTime / TARGET_TOTAL)} ms / target
                         </div>
 
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="w-full flex items-center justify-center gap-3 bg-rose-500 text-slate-900 px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wide hover:bg-rose-400 active:scale-95 transition-all shadow-[0_0_20px_rgba(244,63,94,0.4)]"
                         >
-                            <RotateCcw size={22} /> Jugar de nuevo
+                            <RotateCcw size={22} /> Play Again
                         </button>
                     </motion.div>
                 )}
@@ -162,10 +162,10 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
             {gameState === 'playing' && targetPositions.length > 0 && (
                 <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-4 pointer-events-none z-10">
                     <div className="relative w-full max-w-4xl h-[60vh] bg-slate-800/30 rounded-3xl border-4 border-dashed border-slate-700/50 overflow-hidden">
-                        {/* Zona Segura Inset: Evita matemáticamente que la bola (60px) roce los bordes */}
+                        {/* Safe Inset Zone: Mathematically prevents the ball (60px) from touching the edges */}
                         <div className="absolute inset-[30px] pointer-events-none">
                             <motion.div
-                            key={targetsHit} // Forzar un re-montaje de la animación en cada nuevo objetivo
+                            key={targetsHit} // Force a re-mount of the animation on each new target
                             layoutId="tracking-target"
                             className="absolute pointer-events-auto"
                             style={{
@@ -182,7 +182,7 @@ export default function TrackingAim({ onBack, onSaveRecord }) {
                                 top: yPath
                             }}
                             transition={{
-                                duration: 3.5, // Más rápido
+                                duration: 3.5, // Faster
                                 ease: "linear",
                                 repeat: Infinity,
                                 repeatType: "mirror"

@@ -87,13 +87,13 @@ export default function ChimpTest({ onBack, onSaveRecord }) {
                         <Brain size={48} className="text-orange-400 mb-6 drop-shadow-[0_0_10px_rgba(251,146,60,0.8)]" />
                         <h1 className="text-4xl font-black mb-4 tracking-tight text-white text-center">Chimp Test</h1>
                         <p className="text-slate-400 text-base mb-8 text-center max-w-sm">
-                            Memoriza los números. Al pulsar el "1", el resto se ocultará. Pulsa los bloques restantes en orden secuencial.
+                            Memorize the numbers. When you press "1", the rest will hide. Press the remaining blocks in sequential order.
                         </p>
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="bg-orange-500 text-slate-900 px-10 py-4 rounded-xl font-black text-xl uppercase tracking-widest hover:bg-orange-400 active:scale-95 shadow-[0_0_20px_rgba(251,146,60,0.4)] transition-all w-full"
                         >
-                            Comenzar
+                            Start
                         </button>
                     </motion.div>
                 )}
@@ -108,9 +108,9 @@ export default function ChimpTest({ onBack, onSaveRecord }) {
                     >
                         <div className="text-slate-500 font-bold tracking-[0.2em] mb-8 text-xl min-h-[4rem]">
                             {gameState === 'mem' ? (
-                                <span className="text-orange-400 drop-shadow-[0_0_10px_currentColor]">Pulsa el 1 para empezar</span>
+                                <span className="text-orange-400 drop-shadow-[0_0_10px_currentColor]">Press 1 to start</span>
                             ) : (
-                                <>SIGUIENTE: <span className={`text-4xl block text-center mt-2 ${gameState === 'error' ? 'text-white' : 'text-orange-400'} drop-shadow-[0_0_15px_currentColor]`}>{expectedValue}</span></>
+                                <>NEXT: <span className={`text-4xl block text-center mt-2 ${gameState === 'error' ? 'text-white' : 'text-orange-400'} drop-shadow-[0_0_15px_currentColor]`}>{expectedValue}</span></>
                             )}
                         </div>
 
@@ -153,7 +153,7 @@ export default function ChimpTest({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, scale: 1 }}
                         className="flex flex-col items-center justify-center p-10 bg-slate-800/80 rounded-[2rem] border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-40 max-w-sm w-full mx-4 text-center"
                     >
-                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Prueba de Memoria</h2>
+                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Memory Test</h2>
                         <div className="text-6xl md:text-7xl font-mono font-black text-orange-400 mb-10 drop-shadow-[0_0_20px_rgba(251,146,60,0.3)]">
                             {Math.round(totalTime)}<span className="text-3xl font-sans text-slate-500 ml-2">ms</span>
                         </div>
@@ -162,7 +162,7 @@ export default function ChimpTest({ onBack, onSaveRecord }) {
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="w-full flex items-center justify-center gap-3 bg-orange-500 text-slate-900 px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wide hover:bg-orange-400 active:scale-95 transition-all shadow-[0_0_20px_rgba(251,146,60,0.4)]"
                         >
-                            <RotateCcw size={22} /> Jugar de nuevo
+                            <RotateCcw size={22} /> Play Again
                         </button>
                     </motion.div>
                 )}

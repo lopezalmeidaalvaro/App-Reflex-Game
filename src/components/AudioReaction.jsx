@@ -30,7 +30,7 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
         setReactionTime(null);
 
         if (!beepSound.current) {
-            // ¡AQUÍ ESTÁ LA MAGIA DE VITE! Añadimos import.meta.env.BASE_URL
+            // HERE IS VITE MAGIC! We add import.meta.env.BASE_URL
             beepSound.current = new Audio(import.meta.env.BASE_URL + 'sfx/bloop.mp3');
         }
 
@@ -49,7 +49,7 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
             try {
                 beepSound.current.play();
             } catch (error) {
-                console.warn("El audio fue bloqueado por el navegador o no se encontró el archivo:", error);
+                console.warn("Audio was blocked by the browser or file was not found:", error);
             }
 
             startTime.current = performance.now();
@@ -108,10 +108,10 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
                         <AudioLines size={64} className="text-indigo-400 mb-6 drop-shadow-[0_0_20px_rgba(129,140,248,0.5)]" />
                         <h1 className="text-4xl font-black mb-4 tracking-tight text-white">Audio Reaction</h1>
                         <p className="text-slate-400 text-base mb-8 font-medium">
-                            Espera el sonido. Haz clic lo más rápido posible. Cierra los ojos si ayuda.
+                            Wait for the sound. Click as fast as possible. Close your eyes if it helps.
                         </p>
                         <div className="text-slate-500 font-bold uppercase tracking-widest text-sm animate-pulse-slow">
-                            Haz clic para iniciar
+                            Click to start
                         </div>
                     </motion.div>
                 )}
@@ -146,8 +146,8 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, y: 0 }}
                         className="flex flex-col items-center justify-center pointer-events-none"
                     >
-                        <div className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-xl text-center">¡Muy Pronto!</div>
-                        <div className="text-white/80 font-bold text-xl uppercase tracking-widest text-center">Espera al sonido</div>
+                        <div className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-xl text-center">Too Early!</div>
+                        <div className="text-white/80 font-bold text-xl uppercase tracking-widest text-center">Wait for the sound</div>
                     </motion.div>
                 )}
 
@@ -158,7 +158,7 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, scale: 1 }}
                         className="flex flex-col items-center justify-center p-10 bg-slate-800/90 backdrop-blur-md rounded-[2rem] border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-40 max-w-sm w-full mx-4 text-center pointer-events-none"
                     >
-                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Reacción Auditiva</h2>
+                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Audio Reaction</h2>
                         <div className="text-6xl md:text-7xl font-mono font-black text-indigo-400 mb-10 drop-shadow-[0_0_20px_rgba(129,140,248,0.4)]">
                             {Math.round(reactionTime)}<span className="text-3xl font-sans text-slate-500 ml-2">ms</span>
                         </div>
@@ -167,7 +167,7 @@ export default function AudioReaction({ onBack, onSaveRecord }) {
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="w-full flex items-center justify-center gap-3 bg-indigo-500 text-white px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wide hover:bg-indigo-400 active:scale-95 transition-all shadow-[0_0_20px_rgba(129,140,248,0.4)] pointer-events-auto"
                         >
-                            <RotateCcw size={22} /> Repetir
+                            <RotateCcw size={22} /> Retry
                         </button>
                     </motion.div>
                 )}

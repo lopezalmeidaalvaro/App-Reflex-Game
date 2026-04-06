@@ -23,13 +23,13 @@ const MEDAL_THRESHOLDS = {
 };
 
 const GAME_MODES = [
-  { id: 'reaction', type: 'classic', title: 'Visual Reaction', description: 'Espera el verde. Clic.', icon: <Zap size={36} />, colorClass: 'text-emerald-400', bgGlow: 'bg-emerald-400', component: ReactionGame },
-  { id: 'aim', type: 'classic', title: 'Caza de Objetivos', description: 'Elimina 10 círculos aleatorios.', icon: <Crosshair size={36} />, colorClass: 'text-cyan-400', bgGlow: 'bg-cyan-400', component: AimGame },
-  { id: 'sequence', type: 'classic', title: 'Memoria Rápida', description: 'Pulsa 1-9 en orden exacto.', icon: <Grid3x3 size={36} />, colorClass: 'text-fuchsia-400', bgGlow: 'bg-fuchsia-400', component: SequenceGame },
+  { id: 'reaction', type: 'classic', title: 'Visual Reaction', description: 'Wait for green. Click.', icon: <Zap size={36} />, colorClass: 'text-emerald-400', bgGlow: 'bg-emerald-400', component: ReactionGame },
+  { id: 'aim', type: 'classic', title: 'Aim Trainer', description: 'Eliminate 10 random targets.', icon: <Crosshair size={36} />, colorClass: 'text-cyan-400', bgGlow: 'bg-cyan-400', component: AimGame },
+  { id: 'sequence', type: 'classic', title: 'Sequence Memory', description: 'Click 1-9 in exact order.', icon: <Grid3x3 size={36} />, colorClass: 'text-fuchsia-400', bgGlow: 'bg-fuchsia-400', component: SequenceGame },
 
-  { id: 'chimp', type: 'pro', title: 'Chimp Test', description: 'Memoriza ubicaciones y pulsa sin ver.', icon: <Brain size={36} />, colorClass: 'text-orange-400', bgGlow: 'bg-orange-400', component: ChimpTest },
-  { id: 'audio', type: 'pro', title: 'Audio Reaction', description: 'Reacciona al BIP bajo pantalla oscura.', icon: <AudioLines size={36} />, colorClass: 'text-indigo-400', bgGlow: 'bg-indigo-400', component: AudioReaction },
-  { id: 'tracking', type: 'pro', title: 'Tracking', description: 'Caza objetivos que rebotan en pánico.', icon: <Move size={36} />, colorClass: 'text-rose-400', bgGlow: 'bg-rose-400', component: TrackingAim }
+  { id: 'chimp', type: 'pro', title: 'Chimp Test', description: 'Memorize locations and click them.', icon: <Brain size={36} />, colorClass: 'text-orange-400', bgGlow: 'bg-orange-400', component: ChimpTest },
+  { id: 'audio', type: 'pro', title: 'Audio Reaction', description: 'React to the sound.', icon: <AudioLines size={36} />, colorClass: 'text-indigo-400', bgGlow: 'bg-indigo-400', component: AudioReaction },
+  { id: 'tracking', type: 'pro', title: 'Tracking', description: 'Track moving targets.', icon: <Move size={36} />, colorClass: 'text-rose-400', bgGlow: 'bg-rose-400', component: TrackingAim }
 ];
 
 export default function App() {
@@ -68,7 +68,7 @@ export default function App() {
               <div className="text-xl font-black italic tracking-tighter text-slate-500">v2.0</div>
               <div className="flex items-center gap-2 bg-slate-800/80 border border-orange-500/30 px-4 py-2 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.15)] pointer-events-auto">
                 <Flame size={20} className="text-orange-500 fill-orange-500" />
-                <span className="font-bold text-orange-400">{streak} Racha Día{streak > 1 ? 's' : ''}</span>
+                <span className="font-bold text-orange-400">{streak} Day{streak > 1 ? 's' : ''} Streak</span>
               </div>
             </div>
 
@@ -77,12 +77,12 @@ export default function App() {
                 REFLEX<span className="text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]">ARENA</span>
               </h1>
               <p className="text-slate-400 font-medium uppercase tracking-[0.2em] text-xs md:text-sm">
-                Neuro-Training & Analítica
+                Neuro-Training & Analytics
               </p>
             </div>
 
             {/* Core Games Section */}
-            <h3 className="text-slate-500 uppercase tracking-widest font-black text-sm mb-4 px-2">Modos Clásicos</h3>
+            <h3 className="text-slate-500 uppercase tracking-widest font-black text-sm mb-4 px-2">Classic Modes</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-10">
               {GAME_MODES.filter(g => g.type === 'classic').map(game => (
                 <GameCard
@@ -97,7 +97,7 @@ export default function App() {
             </div>
 
             {/* Pro Games Section */}
-            <h3 className="text-slate-500 uppercase tracking-widest font-black text-sm mb-4 px-2">Entrenamiento Pro</h3>
+            <h3 className="text-slate-500 uppercase tracking-widest font-black text-sm mb-4 px-2">Pro Training</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
               {GAME_MODES.filter(g => g.type === 'pro').map(game => (
                 <GameCard
@@ -167,7 +167,7 @@ function GameCard({ game, record, medal, onPlay, onStats }) {
       </p>
 
       <div className="border-t border-slate-700/50 w-full pt-4 flex flex-col mb-4">
-        <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1 text-left">Mejor Récord</span>
+        <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1 text-left">Best Record</span>
         <span className="font-mono text-xl font-bold text-white text-left tracking-wider">
           {record ? `${Math.round(record)} ms` : '---'}
         </span>
@@ -178,12 +178,12 @@ function GameCard({ game, record, medal, onPlay, onStats }) {
           onClick={onPlay}
           className={`${game.bgGlow} flex-grow py-3 rounded-xl font-black text-slate-900 uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_4px_15px_currentColor] border-2 border-transparent`}
         >
-          Jugar
+          Play
         </button>
         <button
           onClick={onStats}
           className={`flex-grow-0 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-700 active:scale-95 transition-all text-slate-400 hover:${game.colorClass}`}
-          title="Ver Estadísticas"
+          title="View Stats"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></svg>
         </button>

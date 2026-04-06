@@ -64,7 +64,7 @@ export default function AimGame({ onBack, onSaveRecord }) {
 
                 {gameState === 'playing' && (
                     <div className="ml-auto pointer-events-auto bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700 font-black tracking-widest text-cyan-400">
-                        OBJETIVOS: <span className="text-white ml-2">{targetsHit}/{TARGET_TOTAL}</span>
+                        TARGETS: <span className="text-white ml-2">{targetsHit}/{TARGET_TOTAL}</span>
                     </div>
                 )}
             </div>
@@ -81,13 +81,13 @@ export default function AimGame({ onBack, onSaveRecord }) {
                         <Crosshair size={48} className="text-cyan-400 mb-6 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
                         <h1 className="text-4xl font-black mb-4 tracking-tight text-white">Precision Aim</h1>
                         <p className="text-slate-400 text-base mb-8 text-center max-w-xs">
-                            Haz clic en todos los objetivos de la pantalla lo más rápido que puedas.
+                            Click all targets on the screen as fast as you can.
                         </p>
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="bg-cyan-500 text-slate-900 px-10 py-4 rounded-xl font-black text-xl uppercase tracking-widest hover:bg-cyan-400 active:scale-95 shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all w-full"
                         >
-                            Comenzar
+                            Start
                         </button>
                     </motion.div>
                 )}
@@ -99,19 +99,19 @@ export default function AimGame({ onBack, onSaveRecord }) {
                         animate={{ opacity: 1, scale: 1 }}
                         className="flex flex-col items-center justify-center p-10 bg-slate-800/90 backdrop-blur-md rounded-[2rem] border border-slate-700 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-40 max-w-sm"
                     >
-                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Misión Completada</h2>
+                        <h2 className="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Mission Complete</h2>
                         <div className="text-6xl md:text-7xl font-mono font-black text-cyan-400 mb-2 drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                             {Math.round(stats.totalTime)}<span className="text-3xl font-sans text-slate-500 ml-2">ms</span>
                         </div>
                         <div className="text-slate-400 font-bold mb-10 text-lg">
-                            {Math.round(stats.averageTime)} ms / objetivo
+                            {Math.round(stats.averageTime)} ms / target
                         </div>
 
                         <button
                             onPointerDown={(e) => { e.stopPropagation(); startGame(); }}
                             className="w-full flex items-center justify-center gap-3 bg-cyan-500 text-slate-900 px-8 py-4 rounded-xl font-black text-lg uppercase tracking-wide hover:bg-cyan-400 active:scale-95 transition-all shadow-[0_0_20px_rgba(34,211,238,0.4)]"
                         >
-                            <RotateCcw size={22} /> Repetir
+                            <RotateCcw size={22} /> Retry
                         </button>
                     </motion.div>
                 )}
